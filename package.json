@@ -1,0 +1,23 @@
+{
+  "name": "social_banking_app",
+  "version": "1.0.0",
+  "description": "social_banking_app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start:dev": "nodemon index.js",
+    "debug": "nodemon --inspect index.js"
+  },
+  "author": "Álvaro García Lucero",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.4",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

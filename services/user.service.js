@@ -1,6 +1,6 @@
 
 'use strict'
-
+const bcrypt = require('bcrypt-nodejs');
 
 class userService {
    
@@ -25,14 +25,43 @@ class userService {
 
     }
 
-    async add(body) {
+    async add (data) {
+        
+        return await new Promise(async (resolve, reject) => {
+            let existsUser = await this.getByEmail(data.email);
+                    if (existsUser.length == 0) {
+                        //cifrar la contraseña
+                        bcrypt.hash(data.password, null, null, async (err, hash) => {
+                            data.password = hash;
+                            if (err) {
+                                reject({ status: 'ko', message: "Ha ocurrido un error al guardar el usuario" });
+                            } else {
 
-        const user = this.models.userSchema(body);
-        return user
-          .save()
+                                try{
+                                    let user = await this.models.userSchema(data).save();
+                                    if(user){
+                                        resolve({ status: 'ok', message: "Registrado correctamente"})
+                                    }else{
+                                        reject({ status: 'ko', message: "Ha ocurrido un error al guardar el usuario" });
+                                    }
+                                }
+                                catch(err){
+                                    reject({ status: 'ko', message: "Ha ocurrido un error al guardar el usuario" });
+                                }
+                            }
+                        });
 
+
+                    } else {
+                        reject({ status: 'ko', message: "Ya existe un usuario con ese email" });
+                    }
+       
+        });
     }
-    
+
+    async getByEmail(email) {
+        return await this.models.userSchema.find({"email": email});
+    }
 }
 
 

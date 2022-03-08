@@ -13,6 +13,21 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true
 
+  },
+  password: {
+    type: String,
+    required: true
+
+  },
+  balance: {
+    type: Number,
+    required: true
+
+  },
+  account: {
+    type: String,
+    required: true
+
   }
 });
 

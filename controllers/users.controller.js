@@ -38,7 +38,7 @@ const userController = (userService) => {
                 if(result){
                 res.status(200).send(result);
                 }else{
-                return res.status(500).send({ status: 'ko', message: "No se ha podido registrar al usuario" }); 
+                return res.status(400).send({ status: 'ko', message: "No se ha podido registrar al usuario" }); 
                 }
         
                 
@@ -48,10 +48,38 @@ const userController = (userService) => {
 
 
         } else {
-            return res.status(500).send({ status: 'ko', message: "Validación de los datos de usuario incorrecta" });
+            return res.status(400).send({ status: 'ko', message: "Validación de los datos de usuario incorrecta" });
         }
         
         
+        },
+        login: async (req, res) => {
+            // Recoger parámetros de la petición
+            const params = req.body;
+    
+            // Validar los datos obligatorios
+            const validate_email = !validator.isEmpty(params.email) && validator.isEmail(params.email);
+            const validate_password = !validator.isEmpty(params.password);
+    
+            if (!validate_email || !validate_password) {
+                return res.status(400).send({ status: 'ko', message: "Error al intentar identificarse" });
+            }
+
+            try {
+
+                let result = await userService.login(params.email, params.password)
+
+                if(result){
+                res.status(200).send(result);
+                }else{
+                return res.status(500).send({ status: 'ko', message: "Error al intentar identificarse" }); 
+                }
+        
+                
+            } catch (err) {
+                res.status(400).send(err);
+            }
+
         }
     }
 }

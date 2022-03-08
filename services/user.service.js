@@ -1,6 +1,7 @@
 
 'use strict'
 const bcrypt = require('bcrypt-nodejs');
+const { createToken } = require('../libs/jwt');
 
 class userService {
    
@@ -61,6 +62,31 @@ class userService {
 
     async getByEmail(email) {
         return await this.models.userSchema.find({"email": email});
+    }
+
+    async login (email, password)  {
+        return await new Promise(async (resolve, reject) => {
+        let loggedUser =  await this.getByEmail(email);
+            if (loggedUser.length > 0) {
+                
+                        // Si lo encuentra, valido la password
+                        bcrypt.compare(password, loggedUser[0].password, async (err, check) => {
+                            // Si no es correcto, lanzo el error
+                            if (!check) {
+                                reject({ status: 'ko', message: "Credenciales incorrectas" });
+                                return;
+                            }
+
+                            resolve({ status: 'ok', message: "Credenciales correctas", user: loggedUser[0], token: createToken(loggedUser[0])  })
+                           
+
+                        });
+             
+            }else{
+                reject({ code: 404, result: { status: 'ko', message: "El usuario no existe" } });
+            }
+        
+        });
     }
 }
 

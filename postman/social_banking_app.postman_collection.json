@@ -1,0 +1,217 @@
+{
+	"info": {
+		"_postman_id": "ab6f8179-0ee7-4579-a50e-d69e342a9294",
+		"name": "social_banking_app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/api/users",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"huy\",\r\n  \"age\":\"34\",\r\n  \"email\":\"huy@email.com\",\r\n  \"password\":\"passprueba\",\r\n  \"balance\":\"6647456\",\r\n \"account\":\"TYRTYERT7857857\" \r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/users/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\":\"huy@email.com\",\r\n  \"password\":\"passprueba\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/connections",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imh1eUBlbWFpbC5jb20iLCJjcmVhdGVkQXQiOjE2NDY5NDQ4MzAsImV4cGlyZWRBdCI6MTY0Njk0ODQzMCwiaWF0IjoxNjQ2OTQ0ODMwfQ.BazrqYMCbdoYb_JOhIqUMNO6aghX8OWR-2Ae8H4zpDA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"requestAccount\":\"FGSDFG34534534\",\r\n    \"connectAccount\":\"56456356SDFGFGSDF\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/connections",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"connections"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/connections/FGSDFG34534534",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imh1eUBlbWFpbC5jb20iLCJjcmVhdGVkQXQiOjE2NDY5NDcxMDMsImV4cGlyZWRBdCI6MTY0Njk1MDcwMywiaWF0IjoxNjQ2OTQ3MTAzfQ.IY1APTQ3oDach3nspnvqCU_qAzDG0GIqj2EdMiAFbpo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/connections/FGSDFG34534534",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"connections",
+						"FGSDFG34534534"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/connections/approve",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imh1eUBlbWFpbC5jb20iLCJjcmVhdGVkQXQiOjE2NDY5NDQ4MzAsImV4cGlyZWRBdCI6MTY0Njk0ODQzMCwiaWF0IjoxNjQ2OTQ0ODMwfQ.BazrqYMCbdoYb_JOhIqUMNO6aghX8OWR-2Ae8H4zpDA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"connId\": \"622a6af3b051553e1c640529\",\r\n \"account\":\"56456356SDFGFGSDF\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/connections/approve",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"connections",
+						"approve"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/transactions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imh1eUBlbWFpbC5jb20iLCJjcmVhdGVkQXQiOjE2NDY5NTA0ODMsImV4cGlyZWRBdCI6MTY0Njk1NDA4MywiaWF0IjoxNjQ2OTUwNDgzfQ.Ty6IQwvKurBj5gEypuAbuG3qMEmoMsWJTS-RwdWInsc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Sender\":\"FGSDFG34534534\",\r\n    \"Receiver\":\"56456356SDFGFGSDF\",\r\n    \"Amount\": 20\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/transactions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

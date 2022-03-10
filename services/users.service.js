@@ -26,6 +26,17 @@ class usersService {
 
     }
 
+    async updateUserBalance(user,amount){
+
+        const filter = { _id: user.id };
+        const update = { balance: user.balance - amount };
+
+        
+      return await  this.models.userSchema.findOneAndUpdate(filter, update, {
+            returnOriginal: false
+        });
+    }
+
     async add (data) {
         
         return await new Promise(async (resolve, reject) => {

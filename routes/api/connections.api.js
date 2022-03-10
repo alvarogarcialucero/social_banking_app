@@ -8,6 +8,8 @@ const ConnectionsController = require('../../controllers/connections.controller'
 
 router.post('/', ConnectionsController.requestConnection);
 router.get('/:account', ConnectionsController.getConnections);
+router.post('/approve', ConnectionsController.approveConnection);
+
 
 
 module.exports = router;

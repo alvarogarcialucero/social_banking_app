@@ -1,18 +1,17 @@
 const mongoose = require("mongoose");
 
 const connectionSchema = mongoose.Schema({
-  accountA: {
+  requestAccount: {
     type: String,
     required: true,
   },
-  accountB: {
+  connectAccount: {
     type: String,
     required: true
   },
   status: {
     type: String,
     required: true
-
   }
 });
 

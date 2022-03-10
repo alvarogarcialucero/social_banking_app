@@ -12,11 +12,11 @@ const connectionsController = (connectionsService) => {
         const params = req.body;
 
         // Validar los datos
-        const validate_accountA = params.accountA && !validator.isEmpty(params.accountA);
-        const validate_accountB = params.accountB && !validator.isEmpty(params.accountB);
+        const validate_requestAccount = params.requestAccount && !validator.isEmpty(params.requestAccount);
+        const validate_connectAccount = params.connectAccount && !validator.isEmpty(params.connectAccount);
 
 
-        if (validate_accountA && validate_accountB) {
+        if (validate_requestAccount && validate_connectAccount) {
 
             try {
 
@@ -40,6 +40,42 @@ const connectionsController = (connectionsService) => {
         
         
         },
+
+        
+      approveConnection: async (req, res) => {
+
+            // Recoger parámetros de la petición
+       const params = req.body;
+
+       // Validar los datos
+       const validate_connId = params.connId && !validator.isEmpty(params.connId);
+       const validate_account = params.account && !validator.isEmpty(params.account);
+
+
+       if (validate_connId && validate_account) {
+
+           try {
+               
+               let result = await connectionsService.approveConnection(params);
+
+               if(result){
+               res.status(200).send(result);
+               }else{
+               return res.status(400).send({ status: 'ko', message: "No se ha podido registrar la conexión" }); 
+               }
+       
+               
+           } catch (err) {
+               res.status(500).send(err);
+           }
+
+
+       } else {
+           return res.status(400).send({ status: 'ko', message: "Validación de los datos de conexión incorrecta" });
+       }
+       
+       
+       },
 
         getConnections: async (req, res) => {
 

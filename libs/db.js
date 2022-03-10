@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const userSchema = require("../models/user");
+const connectionSchema = require("../models/connection");
 
 mongoose
 .connect(process.env.MONGODB_URI)
@@ -9,6 +10,6 @@ mongoose
 
 
 module.exports = {
-  userSchema
-  
+  userSchema,
+  connectionSchema
 };

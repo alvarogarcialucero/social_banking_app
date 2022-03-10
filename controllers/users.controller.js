@@ -1,7 +1,7 @@
 const validator = require('validator');
 
 
-const userController = (userService) => {
+const usersController = (usersService) => {
 
     return {
 
@@ -9,7 +9,7 @@ const userController = (userService) => {
 
             try {
 
-                let result = await userService.getUsers()
+                let result = await usersService.getUsers()
                 res.status(200).json(result);
         
                 
@@ -33,7 +33,7 @@ const userController = (userService) => {
 
             try {
 
-                let result = await userService.add(params);
+                let result = await usersService.add(params);
 
                 if(result){
                 res.status(200).send(result);
@@ -67,7 +67,7 @@ const userController = (userService) => {
 
             try {
 
-                let result = await userService.login(params.email, params.password)
+                let result = await usersService.login(params.email, params.password)
 
                 if(result){
                 res.status(200).send(result);
@@ -85,4 +85,4 @@ const userController = (userService) => {
 }
 
 
-module.exports = userController;
+module.exports = usersController;
